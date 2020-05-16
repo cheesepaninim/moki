@@ -15,7 +15,7 @@ $ npm run build
 
 ## Structure
 ```
-react-tutorial
+moki
 ├── README.md
 ├── node_modules
 ├── package.json
@@ -29,15 +29,24 @@ react-tutorial
     ├── assets
     │   └── images
     ├── components
+    │   ├── atoms
+    │   ├── modules
+    │   │   └── layout
+    │   └── templates
     ├── constants
     │   ├── schemes
     │   ├── APIs.js
     │   ├── Dialogs.js
     │   └── URLs.js
+    ├── features
     ├── lib
     ├── routes
     │   └── index.js
+    ├── store
+    │   ├── reducer.js
+    │   └── store.js
     ├── utils
+    │   └── history.js
     ├── App.css
     ├── App.js
     ├── App.test.js
