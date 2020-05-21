@@ -26,6 +26,7 @@ moki
 │   ├── index.html
 │   └── manifest.json
 └── src
+    ├── api
     ├── assets
     │   └── images
     ├── components
