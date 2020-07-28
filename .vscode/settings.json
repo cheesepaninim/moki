@@ -1,0 +1,17 @@
+{
+    "eslint.validate": [
+        "javascript",
+        "html"
+    ],
+    "eslint.options": {
+        "configFile": ".eslintrc.json",
+        "ignore" : true,
+        "ignorePath" : ".eslintignore"
+    },
+    "eslint.alwaysShowStatus": true,
+    "prettier.disableLanguages": ["js"],
+    "files.autoSave": "onFocusChange",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
+}
