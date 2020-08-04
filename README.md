@@ -13,6 +13,8 @@ $ npm start
 $ npm run build
 ```
 
+<br>
+
 ## Structure
 ```
 moki
@@ -57,3 +59,26 @@ moki
     └── serviceWorker.js
     └── setupTests.js
 ```
+
+<br>
+
+## Component structure
+### atoms
+Atomic Design 5계층을 간단화한 3계층(Atoms, Modules, Templates)에서 1단계인 Atoms 단계의 컴포넌트가 위치함.    
+ex. icon, text, image 등 유닛 단위 레벨의 컴포넌트
+
+<br>
+
+### modules
+Atomic Design 5계층을 간단화한 3계층(Atoms, Modules, Templates)에서 2단계 Modules 단계의 컴포넌트가 위치함.  
+ex. form, card, list 등 모듈 단위 레벨의 컴포넌트 또는, header, footer, sidebar 등 레이아웃 단위 레벨의 컴포넌트
+
+#### layout
+Atomic Design 5계층을 간단화한 3계층(Atoms, Modules, Templates)에서 2단계 Modules 단계의 컴포넌트가 위치함.  
+ex. form, card, list 등 모듈 단위 레벨의 컴포넌트 또는, header, footer, sidebar 등 레이아웃 단위 레벨의 컴포넌트
+ 
+<br>
+
+### Templates
+Atomic Design 5계층을 간단화한 3계층(Atoms, Modules, Templates)에서 3단계 Templates 단계의 컴포넌트가 위치함.  
+ex. 페이지 단위 레벨의 컴포넌트(route 기반)
