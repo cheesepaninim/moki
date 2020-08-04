@@ -8,6 +8,7 @@ import {
     selectCount,
 } from '../../../features/counter/counterSlice';
 import styles from './Counter.module.css';
+import Icon from '../../atoms/common/Icon';
 
 function Counter() {
     const count = useSelector(selectCount);
@@ -23,7 +24,7 @@ function Counter() {
                     aria-label="Increment value"
                     onClick={() => dispatch(increment())}
                 >
-                    +
+                    <Icon type="add" />
                 </button>
                 <span className={styles.value}>{count}</span>
                 <button
@@ -32,7 +33,7 @@ function Counter() {
                     aria-label="Decrement value"
                     onClick={() => dispatch(decrement())}
                 >
-                    -
+                    <Icon type="remove" />
                 </button>
             </div>
             <div className={styles.row}>
