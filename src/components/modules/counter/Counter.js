@@ -8,7 +8,7 @@ import {
     selectCount,
 } from '../../../features/counter/counterSlice';
 import styles from './Counter.module.css';
-import Icon from '../../atoms/common/Icon';
+import Button from '../../atoms/common/Button';
 
 function Counter() {
     const count = useSelector(selectCount);
@@ -18,23 +18,21 @@ function Counter() {
     return (
         <div>
             <div className={styles.row}>
-                <button
-                    type="button"
-                    className={styles.button}
-                    aria-label="Increment value"
+                <Button
+                    type="icon"
+                    color="primary"
+                    size="large"
+                    icon="add"
                     onClick={() => dispatch(increment())}
-                >
-                    <Icon type="add" />
-                </button>
+                />
                 <span className={styles.value}>{count}</span>
-                <button
-                    type="button"
-                    className={styles.button}
-                    aria-label="Decrement value"
+                <Button
+                    type="icon"
+                    color="primary"
+                    size="large"
+                    icon="remove"
                     onClick={() => dispatch(decrement())}
-                >
-                    <Icon type="remove" />
-                </button>
+                />
             </div>
             <div className={styles.row}>
                 <input
@@ -43,26 +41,30 @@ function Counter() {
                     value={incrementAmount}
                     onChange={(e) => setIncrementAmount(e.target.value)}
                 />
-                <button
-                    type="button"
-                    className={styles.button}
+                <Button
+                    type="iconLabel"
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    icon="add"
+                    iconLocation="start"
+                    label="Add Amount"
                     onClick={() =>
                         dispatch(
                             incrementByAmount(Number(incrementAmount) || 0)
                         )
                     }
-                >
-                    Add Amount
-                </button>
-                <button
-                    type="button"
-                    className={styles.asyncButton}
+                />
+                <Button
+                    type="text"
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    label="Add Async"
                     onClick={() =>
                         dispatch(incrementAsync(Number(incrementAmount) || 0))
                     }
-                >
-                    Add Async
-                </button>
+                />
             </div>
         </div>
     );
