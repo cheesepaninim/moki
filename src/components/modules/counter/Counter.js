@@ -6,12 +6,15 @@ import {
     incrementByAmount,
     incrementAsync,
     selectCount,
+    selectIsProgress,
 } from '../../../features/counter/counterSlice';
 import styles from './Counter.module.css';
 import Button from '../../atoms/common/Button';
+import Progress from '../../atoms/common/Progress';
 
 function Counter() {
     const count = useSelector(selectCount);
+    const isProgress = useSelector(selectIsProgress);
     const dispatch = useDispatch();
     const [incrementAmount, setIncrementAmount] = useState('2');
 
@@ -65,6 +68,7 @@ function Counter() {
                         dispatch(incrementAsync(Number(incrementAmount) || 0))
                     }
                 />
+                {isProgress && <Progress type="circular" color="Primary" />}
             </div>
         </div>
     );
