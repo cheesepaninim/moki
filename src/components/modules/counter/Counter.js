@@ -11,6 +11,7 @@ import {
 import styles from './Counter.module.css';
 import Button from '../../atoms/common/Button';
 import Progress from '../../atoms/common/Progress';
+import Liked from '../../atoms/Liked';
 
 function Counter() {
     const count = useSelector(selectCount);
@@ -24,7 +25,7 @@ function Counter() {
                 <Button
                     type="icon"
                     color="primary"
-                    size="large"
+                    size="medium"
                     icon="add"
                     onClick={() => dispatch(increment())}
                 />
@@ -32,7 +33,7 @@ function Counter() {
                 <Button
                     type="icon"
                     color="primary"
-                    size="large"
+                    size="medium"
                     icon="remove"
                     onClick={() => dispatch(decrement())}
                 />
@@ -69,6 +70,9 @@ function Counter() {
                     }
                 />
                 {isProgress && <Progress type="circular" color="Primary" />}
+            </div>
+            <div className={styles.row}>
+                <Liked color="inherit" count={100000} isLiked />
             </div>
         </div>
     );
