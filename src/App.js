@@ -9,7 +9,7 @@ import './App.css';
 import Routes from './routes';
 
 // components
-import Header from './components/modules/layout/header/Header';
+import Header from './components/modules/layout/Header';
 
 function App() {
     const routeComponents = Routes.map(({ path, component }, key) => (
