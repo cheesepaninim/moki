@@ -12,6 +12,7 @@ import styles from './Counter.module.css';
 import Button from '../../atoms/common/Button';
 import Progress from '../../atoms/common/Progress';
 import Liked from '../../atoms/Liked';
+import Linked from '../../atoms/Linked';
 
 function Counter() {
     const count = useSelector(selectCount);
@@ -73,6 +74,9 @@ function Counter() {
             </div>
             <div className={styles.row}>
                 <Liked color="inherit" count={100000} isLiked />
+            </div>
+            <div className={styles.row}>
+                <Linked color="inherit" count={100000} isLinked />
             </div>
         </div>
     );
