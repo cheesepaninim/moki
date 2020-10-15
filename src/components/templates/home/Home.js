@@ -8,7 +8,7 @@ function Home() {
             HOME
             <Counter />
             Editor
-            <Editor />
+            <Editor placeholder="Write something..." />
         </div>
     );
 }
