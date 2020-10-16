@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
+import { Container } from '@material-ui/core';
 import history from './utils/history';
 
 // css
@@ -17,10 +18,10 @@ function App() {
     ));
     return (
         <Router history={history}>
-            <div className="container">
+            <Container maxWidth="sm">
                 <Header />
                 <Switch>{routeComponents}</Switch>
-            </div>
+            </Container>
         </Router>
     );
 }
