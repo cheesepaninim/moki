@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
 import Button from './common/Button';
 
 const useStyles = makeStyles(() => ({
     label: {
-        color: red[500],
+        // color: red[500],
     },
 }));
 
