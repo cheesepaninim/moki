@@ -15,6 +15,7 @@ function Editor() {
         const quillInstance = el.quill;
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
         input.click();
 
         input.onchange = (e) => {
