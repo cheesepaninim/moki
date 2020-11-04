@@ -25,6 +25,21 @@ function Header() {
                     </NavLink>
                 </li>
             </ul>
+
+            <ul>
+                <li>
+                    Sign In:
+                    <input type="text"
+                           onKeyUp={(e) => {
+                               if(e.keyCode === 13) alert('enter')
+                           }}
+                    />
+                </li>
+                <li>
+                    Sign Up:
+                    <input type="text"/>
+                </li>
+            </ul>
         </div>
     );
 }
