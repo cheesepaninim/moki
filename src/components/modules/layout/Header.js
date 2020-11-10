@@ -1,9 +1,11 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 import { NavLink } from 'react-router-dom';
 
 function Header() {
     return (
         <div>
+            <Typography>Typography 테마 적용</Typography>
             <ul>
                 <li>
                     <NavLink

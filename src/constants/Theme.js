@@ -45,10 +45,13 @@ const THEME = createMuiTheme({
     overrides: {
         MuiCssBaseline: {
             '@global': {
-                '@font-face': [raleway],
+                p: {
+                    '@font-face': [raleway],
+                },
             },
         },
     },
+    spacing: 4, // px 단위
 });
 
 export default THEME;
