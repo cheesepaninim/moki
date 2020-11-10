@@ -2,8 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
     postSignUp,
-    getSignIn,
-    getSignOut,
+    signIn,
+    signOut,
     selectIsSignIn,
     selectUserToken
 } from '../../../features/users/usersSlice';
@@ -54,13 +54,13 @@ function Header() {
                     <input type="text"
                            onKeyUp={(e) => {
                                if(e.keyCode === 13) {
-                                   dispatch(getSignIn({user_token: e.target.value}))
+                                   dispatch(signIn({user_token: e.target.value}))
                                }
                            }}
                     />
                 </li>
                 <li>
-                    <button onClick={() => dispatch(getSignOut({user_token: userToken}))}>
+                    <button onClick={() => dispatch(signOut({user_token: userToken}))}>
                         Sign Out
                     </button>
                 </li>

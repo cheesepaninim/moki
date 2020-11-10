@@ -13,13 +13,9 @@ export const usersSlice = createSlice({
         loadUsers: (state, action) => {
             state.list = action.payload;
         },
-        signIn: (state, action) => {
-            state.userToken = action.payload;
-            state.isSignIn = true;
-        },
-        signOut: (state) => {
-            state.userToken = '';
-            state.isSignIn = false;
+        auth: (state, action) => {
+            state.userToken = action.payload.userToken;
+            state.isSignIn = action.payload.isSignIn;
         },
     },
 });
@@ -27,15 +23,16 @@ export const usersSlice = createSlice({
 /**
  * select
  */
-export const selectList = (state) => state.users.list;
+export const selectList = state => state.users.list;
+export const selectIsSignIn = state => state.isSignIn;
+export const selectUserToken = state => state.userToken;
 
 /**
  * actions
  */
 const {
     loadUsers,
-    signIn,
-    signOut
+    auth
 } = usersSlice.actions;
 
 /**
@@ -68,7 +65,7 @@ export const postSignUp = data => async (dispatch) => {
 };
 
 // TODO: SIGN IN, SIGN OUT 로직 확인.. user_token 받는 위치, 전달하는 위치 확인 #
-export const getSignIn = data => async (dispatch) => {
+export const signIn = data => async (dispatch) => {
     const user_token = data.user_token
     const res = await api.request(API_SIGN_IN(user_token), {
         method: 'get',
@@ -76,28 +73,25 @@ export const getSignIn = data => async (dispatch) => {
         data
     });
     if (res.result === 'Success') {
-        dispatch(signIn(user_token))
+        dispatch(auth({userToken: user_token, isSignIn: true}))
     }
     else {
 
     }
 };
 
-export const getSignOut = data => async (dispatch) => {
+export const signOut = data => async (dispatch) => {
     const res = await api.request(API_SIGN_OUT(), {
         method: 'get',
         params: {},
         data
     });
     if (res.result === 'Success') {
-        dispatch(signOut())
+        dispatch(auth({userToken: '', isSignIn: false}))
     }
     else {
 
     }
 };
-
-export const selectIsSignIn = state => state.isSignIn;
-export const selectUserToken = state => state.userToken;
 
 export default usersSlice.reducer;
