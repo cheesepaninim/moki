@@ -1,7 +1,9 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import { Container } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core/styles';
 import history from './utils/history';
+import THEME from './constants/Theme';
 
 // css
 import './App.css';
@@ -17,12 +19,14 @@ function App() {
         <Route exact path={path} component={component} key={key} />
     ));
     return (
-        <Router history={history}>
-            <Container maxWidth="sm">
-                <Header />
-                <Switch>{routeComponents}</Switch>
-            </Container>
-        </Router>
+        <ThemeProvider theme={THEME}>
+            <Router history={history}>
+                <Container maxWidth="sm">
+                    <Header />
+                    <Switch>{routeComponents}</Switch>
+                </Container>
+            </Router>
+        </ThemeProvider>
     );
 }
 
