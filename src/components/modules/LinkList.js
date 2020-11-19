@@ -8,12 +8,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import { selectList, getLikeList } from '../../features/like/likeSlice';
+import { selectList, getLinkList } from '../../features/link/linkSlice';
 import Liked from '../atoms/Liked';
 import Linked from '../atoms/Linked';
 import { setEllipsis } from '../../utils/common';
 
-function LikeItem({ title, like_cnt, link_cnt, content }) {
+function LinkItem({ title, link_cnt, like_cnt, content }) {
     return (
         <ListItem alignItems="flex-start">
             <div>
@@ -40,12 +40,12 @@ function LikeItem({ title, like_cnt, link_cnt, content }) {
     );
 }
 
-function LikeList({ size }) {
+function LinkList({ size }) {
     const list = useSelector(selectList);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getLikeList({ size }));
+        dispatch(getLinkList({ size }));
     }, [dispatch, size]);
 
     return (
@@ -53,29 +53,29 @@ function LikeList({ size }) {
             {list.map((item) => (
                 <Fragment key={item.id}>
                     <Divider component="li" />
-                    <LikeItem {...item} />
+                    <LinkItem {...item} />
                 </Fragment>
             ))}
         </List>
     );
 }
 
-LikeList.propTypes = {
+LinkList.propTypes = {
     size: PropTypes.number.isRequired,
 };
 
-LikeItem.propTypes = {
+LinkItem.propTypes = {
     title: PropTypes.string,
     like_cnt: PropTypes.number,
     link_cnt: PropTypes.number,
     content: PropTypes.string,
 };
 
-LikeItem.defaultProps = {
+LinkItem.defaultProps = {
     title: '',
     like_cnt: 0,
     link_cnt: 0,
     content: '',
 };
 
-export default LikeList;
+export default LinkList;

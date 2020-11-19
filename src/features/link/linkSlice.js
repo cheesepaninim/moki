@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import api from '../../api';
 import { GET_BOARD } from '../../constants/APIs';
 
-export const likeSlice = createSlice({
-    name: 'like',
+export const linkSlice = createSlice({
+    name: 'link',
     initialState: {
         list: [],
     },
     reducers: {
-        loadLikeList: (state, action) => {
+        loadLinkList: (state, action) => {
             state.list = action.payload;
         },
     },
@@ -17,29 +17,29 @@ export const likeSlice = createSlice({
 /**
  * select
  */
-export const selectList = (state) => state.like.list;
+export const selectList = (state) => state.link.list;
 
 /**
  * actions
  */
-const { loadLikeList } = likeSlice.actions;
+const { loadLinkList } = linkSlice.actions;
 
 /**
  * APIs
  */
-export const getLikeList = ({ size }) => async (dispatch) => {
+export const getLinkList = ({ size }) => async (dispatch) => {
     const res = await api.request(GET_BOARD, {
         method: 'get',
         params: {
-            search: '01', // 좋아요 순
+            search: '02', // 링크 순
             size,
         },
     });
     if (res.status === 200) {
-        dispatch(loadLikeList(res.data));
+        dispatch(loadLinkList(res.data));
     } else {
         // todo 별도 에러 처리 하는 경우 여기에 작성
     }
 };
 
-export default likeSlice.reducer;
+export default linkSlice.reducer;

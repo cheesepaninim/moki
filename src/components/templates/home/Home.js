@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 import LikeList from '../../modules/LikeList';
+import LinkList from '../../modules/LinkList';
 
 function Home() {
     return (
@@ -18,7 +19,10 @@ function Home() {
                     </Paper>
                 </Grid>
                 <Grid item xs={6}>
-                    <Paper>MOST Linked</Paper>
+                    <Paper>
+                        <Typography>MOST Linked</Typography>
+                        <LinkList size={3} />
+                    </Paper>
                 </Grid>
                 <Grid item xs={6}>
                     <Paper>
