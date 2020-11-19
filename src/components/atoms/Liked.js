@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/red';
 import Button from './common/Button';
 
 const useStyles = makeStyles(() => ({
     label: {
-        // color: red[500],
+        color: red[500],
     },
 }));
 
@@ -15,11 +16,9 @@ function Liked({ size, count, isLiked, onClick }) {
         <div className={classes.root}>
             <Button
                 type="iconLabel"
-                buttonClasses={
-                    isLiked && {
-                        label: classes.label,
-                    }
-                }
+                className={{
+                    label: isLiked ? classes.label : {},
+                }}
                 variant="text"
                 size={size}
                 icon={isLiked ? 'favorite' : 'favorite_border'}
