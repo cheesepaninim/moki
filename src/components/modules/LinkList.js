@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { selectList, getLinkList } from '../../features/link/linkSlice';
 import Liked from '../atoms/Liked';
 import Linked from '../atoms/Linked';
-import { setEllipsis } from '../../utils/common';
+import { setEllipsis, removeTag } from '../../utils/common';
 
 function LinkItem({ title, link_cnt, like_cnt, content }) {
     return (
@@ -32,7 +32,7 @@ function LinkItem({ title, link_cnt, like_cnt, content }) {
                 secondary={
                     <>
                         <Typography component="span">writer name</Typography>—
-                        {setEllipsis(content, 70, '...')}
+                        {setEllipsis(removeTag(content), 70, '...')}
                     </>
                 }
             />

@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { selectList, getLikeList } from '../../features/like/likeSlice';
 import Liked from '../atoms/Liked';
 import Linked from '../atoms/Linked';
-import { setEllipsis } from '../../utils/common';
+import { setEllipsis, removeTag } from '../../utils/common';
 
 function LikeItem({ title, like_cnt, link_cnt, content }) {
     return (
@@ -32,7 +32,7 @@ function LikeItem({ title, like_cnt, link_cnt, content }) {
                 secondary={
                     <>
                         <Typography component="span">writer name</Typography>—
-                        {setEllipsis(content, 70, '...')}
+                        {setEllipsis(removeTag(content), 70, '...')}
                     </>
                 }
             />
