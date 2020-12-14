@@ -2,6 +2,8 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { NavLink } from 'react-router-dom';
 
+import Alert from '../modal/Alert';
+
 function Header() {
     return (
         <div>
@@ -26,6 +28,7 @@ function Header() {
                         Etc
                     </NavLink>
                 </li>
+                <Alert/>
             </ul>
         </div>
     );
