@@ -8,14 +8,24 @@ import {Backdrop, Fade, Modal} from "@material-ui/core";
 import {useDispatch} from "react-redux";
 
 function Header() {
-    // TODO: alert props 이름들 수정
-    const btnTxt = "This is opener with btnTxt"
     const dispatch = useDispatch();
-    const AlertBtn = (() => (
+
+    // TODO: alert props 이름들 수정
+    const openBtnTxt = "This is opener with btnTxt"
+    const OpenBtn = (() => (
         <button onClick={() => dispatch(toggleAlert(true))}>
-            This is opener with btnEle
+            Open Alert Btn element
         </button>
     ))
+
+    const headerTxt = "Header"
+    const AlertHeader = (() => (
+        <header>
+            Alert Header element
+        </header>
+    ))
+
+    const bodyTxt = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, consequuntur eaque enim fugiat illum iusto mollitia qui quidem repellat ullam! Doloremque eaque exercitationem fugit praesentium quia saepe ut, velit voluptatum."
     // const modalBody = (() => {
     //     return (
     //         <Modal
@@ -32,10 +42,8 @@ function Header() {
     //         </Modal>
     //     )
     // })
-    const bodyHeader = "HEADER"
-    const bodyTxt = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, consequuntur eaque enim fugiat illum iusto mollitia qui quidem repellat ullam! Doloremque eaque exercitationem fugit praesentium quia saepe ut, velit voluptatum."
     const okTxt = "OK!"
-    const okBtn = (() => (
+    const OkBtn = (() => (
         <button style={{'color':'red'}}>OK!</button>
     ))
 
@@ -43,6 +51,21 @@ function Header() {
         <div>
             <Typography>Typography 테마 적용</Typography>
             <ul>
+                <li>
+                    <Alert
+                        openBtnTxt={openBtnTxt}
+                        openBtn={OpenBtn()}
+
+                        headerTxt={headerTxt}
+                        header={<AlertHeader/>}
+
+                        bodyTxt={bodyTxt}
+                        body={AlertBody()}
+
+                        okTxt={okTxt}
+                        okBtn={OkBtn()}
+                    />
+                </li>
                 <li>
                     <NavLink
                         exact
@@ -61,18 +84,6 @@ function Header() {
                     <NavLink to="/etc" activeStyle={{ background: 'yellow' }}>
                         Etc
                     </NavLink>
-                </li>
-                <li>
-                    <Alert
-                        btnTxt={btnTxt}
-                        {/* AlertBtn() 또는 <AlertBtn/> 으로 전달 가능 */}
-                        btn={AlertBtn()}
-                        /*body={modalBody}*/
-                        bodyHeader={bodyHeader}
-                        bodyTxt={bodyTxt}
-                        okText={okTxt}
-                        okBtn={okBtn}
-                    />
                 </li>
             </ul>
         </div>

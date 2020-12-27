@@ -35,7 +35,9 @@ function Alert(props) {
                 {/*Open Alert*/}
                 {props.btnTxt}
             </button>
+
             {props.btn}
+
             <Modal
                 open={open}
                 onClose={() => dispatch(toggleAlert(false))}
