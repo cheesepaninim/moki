@@ -19,14 +19,18 @@ function Home() {
                     </Paper>
                 </Grid>
                 <Grid item xs={6}>
+                    <Typography variant="h4" gutterBottom>
+                        MOST Linked
+                    </Typography>
                     <Paper>
-                        <Typography>MOST Linked</Typography>
                         <LinkList size={3} />
                     </Paper>
                 </Grid>
                 <Grid item xs={6}>
+                    <Typography variant="h4" gutterBottom>
+                        MOST Liked
+                    </Typography>
                     <Paper>
-                        <Typography>MOST Liked</Typography>
                         <LikeList size={3} />
                     </Paper>
                 </Grid>

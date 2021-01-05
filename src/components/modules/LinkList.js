@@ -13,25 +13,22 @@ import Liked from '../atoms/Liked';
 import Linked from '../atoms/Linked';
 import { setEllipsis, removeTag } from '../../utils/common';
 
-function LinkItem({ title, link_cnt, like_cnt, content }) {
+function LinkItem({ id, title, likeCnt, linkCnt, content, userimage }) {
     return (
         <ListItem alignItems="flex-start">
             <div>
-                <Liked count={like_cnt} isLiked />
-                <Linked count={link_cnt} isLinked />
+                <Liked count={likeCnt} isLiked />
+                <Linked count={linkCnt} isLinked />
             </div>
 
             <ListItemAvatar>
-                <Avatar
-                    alt="Remy Sharp"
-                    src="https://randomuser.me/api/portraits/women/79.jpg"
-                />
+                <Avatar alt={id} src={userimage} />
             </ListItemAvatar>
             <ListItemText
                 primary={title}
                 secondary={
                     <>
-                        <Typography component="span">writer name</Typography>—
+                        <Typography component="span">{id}</Typography>—
                         {setEllipsis(removeTag(content), 70, '...')}
                     </>
                 }
@@ -50,9 +47,9 @@ function LinkList({ size }) {
 
     return (
         <List>
-            {list.map((item) => (
+            {list.map((item, i) => (
                 <Fragment key={item.id}>
-                    <Divider component="li" />
+                    {i ? <Divider component="li" /> : null}
                     <LinkItem {...item} />
                 </Fragment>
             ))}
@@ -65,17 +62,21 @@ LinkList.propTypes = {
 };
 
 LinkItem.propTypes = {
+    id: PropTypes.string,
     title: PropTypes.string,
-    like_cnt: PropTypes.number,
-    link_cnt: PropTypes.number,
+    likeCnt: PropTypes.number,
+    linkCnt: PropTypes.number,
     content: PropTypes.string,
+    userimage: PropTypes.string,
 };
 
 LinkItem.defaultProps = {
+    id: '',
     title: '',
-    like_cnt: 0,
-    link_cnt: 0,
+    likeCnt: 0,
+    linkCnt: 0,
     content: '',
+    userimage: '',
 };
 
 export default LinkList;
