@@ -19,11 +19,11 @@ function Header() {
     ))
 
     const headerTxt = "Header"
-    const AlertHeader = (() => (
+    const AlertHeader = () => (
         <header>
             Alert Header element
         </header>
-    ))
+    )
 
     const bodyTxt = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, consequuntur eaque enim fugiat illum iusto mollitia qui quidem repellat ullam! Doloremque eaque exercitationem fugit praesentium quia saepe ut, velit voluptatum."
     // const modalBody = (() => {
@@ -43,9 +43,9 @@ function Header() {
     //     )
     // })
     const okTxt = "OK!"
-    const OkBtn = (() => (
+    const OkBtn = () => (
         <button style={{'color':'red'}}>OK!</button>
-    ))
+    )
 
     return (
         <div>
@@ -60,10 +60,10 @@ function Header() {
                         header={<AlertHeader/>}
 
                         bodyTxt={bodyTxt}
-                        body={AlertBody()}
+                        body={<AlertBody />}
 
                         okTxt={okTxt}
-                        okBtn={OkBtn()}
+                        okBtn={<OkBtn />}
                     />
                 </li>
                 <li>
