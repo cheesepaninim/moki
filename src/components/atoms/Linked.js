@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import lightBlue from '@material-ui/core/colors/lightBlue';
 import Button from './common/Button';
 
 const useStyles = makeStyles(() => ({
-    labelLinked: {
-        // color: lightBlue[900],
+    label: {
+        color: lightBlue[900],
     },
 }));
 
@@ -15,8 +16,8 @@ function Linked({ size, count, isLinked, onClick }) {
         <div className={classes.root}>
             <Button
                 type="iconLabel"
-                buttonClasses={{
-                    label: isLinked ? classes.labelLinked : {},
+                className={{
+                    label: isLinked ? classes.label : {},
                 }}
                 variant="text"
                 size={size}

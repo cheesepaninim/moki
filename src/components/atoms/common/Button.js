@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
  */
 function Button({
     type,
-    buttonClasses,
+    className,
     variant,
     color,
     size,
@@ -54,7 +54,7 @@ function Button({
         <div className={classes.button}>
             {isOnlyIcon ? (
                 <IconButton
-                    classes={buttonClasses}
+                    classes={className}
                     color={color}
                     size={size}
                     disabled={disabled}
@@ -66,7 +66,7 @@ function Button({
             ) : (
                 <ButtonCore
                     variant={variant}
-                    classes={buttonClasses}
+                    classes={className}
                     color={color}
                     size={size}
                     disabled={disabled}
@@ -86,7 +86,7 @@ function Button({
 
 Button.propTypes = {
     type: PropTypes.string.isRequired,
-    buttonClasses: PropTypes.instanceOf(Object),
+    className: PropTypes.shape({}),
     variant: PropTypes.string,
     color: PropTypes.string,
     size: PropTypes.string,
@@ -100,7 +100,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-    buttonClasses: null,
+    className: {},
     variant: 'text',
     color: 'default',
     size: 'medium',

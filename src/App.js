@@ -21,7 +21,7 @@ function App() {
     return (
         <ThemeProvider theme={THEME}>
             <Router history={history}>
-                <Container maxWidth="sm">
+                <Container maxWidth="lg">
                     <Header />
                     <Switch>{routeComponents}</Switch>
                 </Container>
