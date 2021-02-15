@@ -18,14 +18,14 @@ function App() {
     const routeComponents = Routes.map(({ path, component }, key) => (
         <Route exact path={path} component={component} key={key} />
     ));
-    return (
-        <ThemeProvider theme={THEME}>
-            <Router history={history}>
-                <Container maxWidth="sm">
-                    <Header />
-                    <Switch>{routeComponents}</Switch>
-                </Container>
-            </Router>
+            return (
+            <ThemeProvider theme={THEME}>
+                <Router history={history}>
+                    <Container maxWidth="sm">
+                        <Header />
+                        <Switch>{routeComponents}</Switch>
+                    </Container>
+                </Router>
         </ThemeProvider>
     );
 }
