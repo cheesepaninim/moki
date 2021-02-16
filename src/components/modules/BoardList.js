@@ -8,12 +8,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import { selectList, getLinkList } from '../../features/link/linkSlice';
+import { selectList, getBoardList } from '../../features/board/boardSlice';
 import Liked from '../atoms/Liked';
 import Linked from '../atoms/Linked';
 import { setEllipsis, removeTag } from '../../utils/common';
 
-function LinkItem({ id, title, likeCnt, linkCnt, content, userimage }) {
+function BoardItem({ id, title, likeCnt, linkCnt, content, userimage }) {
     return (
         <ListItem alignItems="flex-start">
             <div>
@@ -37,12 +37,12 @@ function LinkItem({ id, title, likeCnt, linkCnt, content, userimage }) {
     );
 }
 
-function LinkList({ size }) {
+function BoardList({ size }) {
     const list = useSelector(selectList);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getLinkList({ size }));
+        dispatch(getBoardList({ size }));
     }, [dispatch, size]);
 
     return (
@@ -50,7 +50,7 @@ function LinkList({ size }) {
             {list.map((item, i) => (
                 <Fragment key={item.id}>
                     {i ? <Divider component="li" /> : null}
-                    <LinkItem
+                    <BoardItem
                         id={item.id}
                         title={item.title}
                         likeCnt={item.likeCnt}
@@ -64,11 +64,11 @@ function LinkList({ size }) {
     );
 }
 
-LinkList.propTypes = {
+BoardList.propTypes = {
     size: PropTypes.number.isRequired,
 };
 
-LinkItem.propTypes = {
+BoardItem.propTypes = {
     id: PropTypes.string,
     title: PropTypes.string,
     likeCnt: PropTypes.number,
@@ -77,7 +77,7 @@ LinkItem.propTypes = {
     userimage: PropTypes.string,
 };
 
-LinkItem.defaultProps = {
+BoardItem.defaultProps = {
     id: '',
     title: '',
     likeCnt: 0,
@@ -86,4 +86,4 @@ LinkItem.defaultProps = {
     userimage: '',
 };
 
-export default LinkList;
+export default BoardList;
