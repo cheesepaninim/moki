@@ -86,14 +86,14 @@ function Header() {
     return (
         <div>
             <Typography>Typography 테마 적용</Typography>
-            {/*<Dialog
+            <Dialog
                 customComponents={{
                   dialogBtn: DialogBtn,
                   header: DialogHeader,
                   body: DialogBody,
                   footer: DialogFooter
                 }}
-            />*/}
+            />
             <Dialog
                 dialogBtnText={dialogOptions.dialogBtnText}
                 title={dialogOptions.title}
