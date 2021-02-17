@@ -48,7 +48,7 @@ function Header() {
                 size="small"
                 color="secondary"
                 icon="remove"
-                onClick={() => dispatch(toggleDialog(false))}
+                onClick={() => alert(false)}
             />
 
             <Button
@@ -78,7 +78,7 @@ function Header() {
         onCancelClick: () => {alert('onCancelClick!')},
         // footerStyle: '',
         // footerClass: '',
-        backdropClose: false,
+        backdropClose: true,
         onClose: () => {alert('onClose!')},
     };
     /* // Dialog example */
@@ -86,15 +86,15 @@ function Header() {
     return (
         <div>
             <Typography>Typography 테마 적용</Typography>
-            <Dialog
+            {/*<Dialog
                 customComponents={{
                   dialogBtn: DialogBtn,
                   header: DialogHeader,
                   body: DialogBody,
                   footer: DialogFooter
                 }}
-            />
-            {/*<Dialog
+            />*/}
+            <Dialog
                 dialogBtnText={dialogOptions.dialogBtnText}
                 title={dialogOptions.title}
                 noHeader={dialogOptions.noHeader}
@@ -107,7 +107,7 @@ function Header() {
                 onCancelClick={dialogOptions.onCancelClick}
                 backdropClose={dialogOptions.backdropClose}
                 onClose={dialogOptions.onClose}
-            />*/}
+            />
             <ul>
                 <li>
                     <NavLink

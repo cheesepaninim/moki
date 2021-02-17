@@ -161,7 +161,7 @@ function Dialog({
                 {showCancel &&
                     <Button
                         type="text"
-                        variant="secondary"
+                        color="secondary"
                         size="medium"
                         label={cancelText}
                         onClick={() => {
@@ -174,7 +174,7 @@ function Dialog({
                 {showConfirm &&
                     <Button
                         type="text"
-                        variant="primary"
+                        color="primary"
                         size="medium"
                         label={confirmText}
                         onClick={() => {
@@ -189,26 +189,23 @@ function Dialog({
         return customComponents.footer || DefaultFooter
     };
 
-    const ModalBackdrop = () => (
-        <Backdrop
-            open={open}
-            onClick={backdropClose && dispatch(toggleDialog(false))}
-        >
-            <CircularProgress color="inherit"/>
-        </Backdrop>
-    )
+    const backdropClick = () => {
+        return backdropClose ? dispatch(toggleDialog(false)) : _ => {}
+    };
 
     return (
         <>
             <DialogBtn />
 
+            {/* https://material-ui.com/api/modal/ */}
             <Modal
                 open={open}
                 onClose={() => {
                     onClose && onClose()
                     dispatch(toggleDialog(false))
                 }}
-                BackdropComponent={ModalBackdrop}
+                BackdropComponent={Backdrop}
+                BackdropProps={{onClick: backdropClick }}
                 className={classes.modal}
             >
                 <Fade in={open}>
