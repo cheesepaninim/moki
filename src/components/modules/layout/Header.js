@@ -12,6 +12,9 @@ function Header() {
 
     /* Dialog example */
     const dispatch = useDispatch();
+    const modalId1 = new Date().getTime() + ''
+    const modalId2 = Number(modalId1) + 1 + ''
+
     const DialogBtn = (
         <Button
             type="iconLabel"
@@ -20,7 +23,7 @@ function Header() {
             size="large"
             icon="add"
             label="custom dialog button"
-            onClick={() => dispatch(toggleDialog(true))}
+            onClick={() => dispatch(toggleDialog({ id: modalId1, show: true }))}
         />
     );
     const DialogHeader = (
@@ -40,7 +43,7 @@ function Header() {
                 size="small"
                 color="primary"
                 icon="add"
-                onClick={() => dispatch(toggleDialog(false))}
+                onClick={() => dispatch(toggleDialog({ id: modalId1, show: false }))}
             />
 
             <Button
@@ -56,7 +59,7 @@ function Header() {
                 size="small"
                 color="primary"
                 icon="add"
-                onClick={() => dispatch(toggleDialog(false))}
+                onClick={() => dispatch(toggleDialog({ id: modalId1, show: false }))}
             />
         </>
     );
@@ -64,20 +67,13 @@ function Header() {
     const dialogOptions = {
         dialogBtnText: 'My dialogBtnText',
         title: 'My title',
-        // headerStyle: {},
-        // headerClass: '',
         noHeader: true,
-        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-        // bodyStyle: {},
-        // bodyClass: '',
-        showConfirm: true,
-        confirmText: 'My confirm',
-        onConfirmClick: () => {alert('onConfirmClick!')},
-        showCancel: true,
-        cancelText: 'My cancel',
-        onCancelClick: () => {alert('onCancelClick!')},
-        // footerStyle: '',
-        // footerClass: '',
+        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+        buttons: [
+          {text: 'btn1', onClick: () => dispatch(toggleDialog({ id: modalId2, show: false })) },
+          {text: 'btn2', onClick: () => dispatch(toggleDialog({ id: modalId2, show: false })) },
+          {text: 'btn3', onClick: () => dispatch(toggleDialog({ id: modalId2, show: false })) }
+        ],
         backdropClose: true,
         onClose: () => {alert('onClose!')},
     };
@@ -87,6 +83,7 @@ function Header() {
         <div>
             <Typography>Typography 테마 적용</Typography>
             <Dialog
+                id={modalId1}
                 customComponents={{
                   dialogBtn: DialogBtn,
                   header: DialogHeader,
@@ -95,16 +92,12 @@ function Header() {
                 }}
             />
             <Dialog
+                id={modalId2}
                 dialogBtnText={dialogOptions.dialogBtnText}
                 title={dialogOptions.title}
                 noHeader={dialogOptions.noHeader}
                 content={dialogOptions.content}
-                showConfirm={dialogOptions.showConfirm}
-                confirmText={dialogOptions.confirmText}
-                onConfirmClick={dialogOptions.onConfirmClick}
-                showCancel={dialogOptions.showCancel}
-                cancelText={dialogOptions.cancelText}
-                onCancelClick={dialogOptions.onCancelClick}
+                buttons={dialogOptions.buttons}
                 backdropClose={dialogOptions.backdropClose}
                 onClose={dialogOptions.onClose}
             />

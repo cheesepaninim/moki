@@ -3,11 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 export const dialogSlice = createSlice({
     name: 'dialog',
     initialState: {
-        open: false,
+        list: {}
     },
     reducers: {
         toggleDialog: (state, action) => {
-            state.open = action.payload;
+            const { id, show } = action.payload;
+            state.list[id] = show;
         },
     },
 });
@@ -15,7 +16,7 @@ export const dialogSlice = createSlice({
 /**
  * select
  */
-export const selectOpen = (state) => state.dialog.open;
+export const selectShow = (state, id) => state.dialog.list[id];
 
 /**
  * actions

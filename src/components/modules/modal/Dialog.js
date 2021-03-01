@@ -1,15 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { selectOpen, toggleDialog } from "../../../features/modal/dialogSlice";
+import { selectShow, toggleDialog } from "../../../features/modal/dialogSlice";
 import { Modal, Fade, Backdrop, CircularProgress } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from 'prop-types';
 import Button from '../../atoms/common/Button';
 
 Dialog.propTypes = {
+    id: PropTypes.string.isRequired,
     customComponents: PropTypes.object,
     dialogBtnText: PropTypes.string,
-    dialogBtnStyle: PropTypes.object,
     title: PropTypes.string,
     headerStyle: PropTypes.object,
     headerClass: PropTypes.string,
@@ -17,12 +17,6 @@ Dialog.propTypes = {
     content: PropTypes.string,
     bodyStyle: PropTypes.object,
     bodyClass: PropTypes.string,
-    showConfirm: PropTypes.bool,
-    confirmText: PropTypes.string,
-    onConfirmClick: PropTypes.func,
-    showCancel: PropTypes.bool,
-    cancelText: PropTypes.string,
-    onCancelClick: PropTypes.func,
     footerStyle: PropTypes.object,
     footerClass: PropTypes.string,
     backdropClose: PropTypes.bool,
@@ -31,32 +25,35 @@ Dialog.propTypes = {
 
 Dialog.defaultProps = {
     customComponents: {},
-    dialogBtnStyle: {},
     headerStyle: {},
     noHeader: false,
     bodyStyle: {},
-    footerStyle: {},
+    footerStyle: {
+        'display': 'flex',
+        'alignItems': 'center',
+        'justifyContent': 'center'
+    },
     showConfirm: true,
     showCancel: true,
     backdropClose: true
 };
 
 function Dialog({
-    customComponents,
+    id, customComponents,
     dialogBtnText,
     title, headerStyle, headerClass, noHeader,
     content, bodyStyle, bodyClass,
-    showConfirm, confirmText, onConfirmClick,
-    showCancel, cancelText, onCancelClick,
-    footerStyle, footerClass,
+    buttons, footerStyle, footerClass,
     backdropClose,
     onClose
 }) {
     /** Dialog Props list
      *
+     *  @param {String} id (isRequired)
+     *
      *  @param {Object} customComponents *prior to other props
      *  {
-     *    {Component} dialogBtn - onClick = {() => dispatch(toggleDialog(true))}
+     *    {Component} dialogBtn - onClick = {() => dispatch(toggleDialog({ id: modalId1, show: false }))}
      *    {Component} header
      *    {Component} body
      *    {Component} footer
@@ -73,22 +70,30 @@ function Dialog({
      *  @param {Object} bodyStyle
      *  @param {String} bodyClass
      *
-     *  @param {Boolean} showConfirm (default : true)
-     *  @param {String} confirmText
-     *  @param {Function} onConfirmClick
-     *
-     *  @param {Boolean} showCancel (default : true)
-     *  @param {String} cancelText
-     *  @param {Function} onCancelClick
-     *
+     *  @param {Array} buttons
+     *  [
+     *      {
+     *          {String} text
+     *          {Function} onClick
+     *          ...button props (TODO:)
+     *      }
+     *  ]
      *  @param {Object} footerStyle
      *  @param {String} footerClass
+     *
+     *  @param {Boolean} showConfirm (default : true)   - deprecated
+     *  @param {String} confirmText                     - deprecated
+     *  @param {Function} onConfirmClick                - deprecated
+     *
+     *  @param {Boolean} showCancel (default : true)    - deprecated
+     *  @param {String} cancelText                      - deprecated
+     *  @param {Function} onCancelClick                 - deprecated
      *
      *  @param {Boolean} backdropClose (default : true)
      *  @param {Function} onClose
      */
 
-    const open = useSelector(selectOpen);
+    const show = useSelector(state => selectShow(state, id)) || false;
     const dispatch = useDispatch();
 
     const useStyles = makeStyles(theme => ({
@@ -108,13 +113,14 @@ function Dialog({
 
     /* Dialog open */
     const DialogBtn = () => {
+        /* TODO: 버튼 props 받아서 전달하도록 수정 */
         const DefaultBtn = (
             <Button
                 type="text"
                 color="primary"
                 size="medium"
                 label={dialogBtnText || 'Dialog'}
-                onClick={() => dispatch(toggleDialog(true))}
+                onClick={() => dispatch(toggleDialog( {id, show: true }))}
             />
         );
 
@@ -158,31 +164,19 @@ function Dialog({
                 style={footerStyle}
                 className={footerClass || ''}
             >
-                {showCancel &&
+                {/* TODO: 버튼 props 받아서 전달하도록 수정 */}
+                {buttons && buttons.map((btn, idx) => (
                     <Button
-                        type="text"
-                        color="secondary"
-                        size="medium"
-                        label={cancelText}
-                        onClick={() => {
-                            onCancelClick && onCancelClick();
-                            dispatch(toggleDialog(false));
-                        }}
-                    />
-                }
-
-                {showConfirm &&
-                    <Button
+                        key={`${id}_btn_${idx}`}
                         type="text"
                         color="primary"
                         size="medium"
-                        label={confirmText}
+                        label={btn.text}
                         onClick={() => {
-                            onConfirmClick && onConfirmClick();
-                            dispatch(toggleDialog(false));
+                            btn.onClick && btn.onClick();
                         }}
                     />
-                }
+                ))}
             </div>
         );
 
@@ -190,7 +184,7 @@ function Dialog({
     };
 
     const backdropClick = () => {
-        return backdropClose ? dispatch(toggleDialog(false)) : _ => {}
+        return backdropClose ? dispatch(toggleDialog({ id, show: false })) : _ => {}
     };
 
     return (
@@ -199,16 +193,16 @@ function Dialog({
 
             {/* https://material-ui.com/api/modal/ */}
             <Modal
-                open={open}
+                open={show}
                 onClose={() => {
-                    onClose && onClose()
-                    dispatch(toggleDialog(false))
+                    onClose && onClose();
+                    dispatch(toggleDialog({ id, show: false }));
                 }}
                 BackdropComponent={Backdrop}
                 BackdropProps={{onClick: backdropClick }}
                 className={classes.modal}
             >
-                <Fade in={open}>
+                <Fade in={show}>
                     <div className={classes.paper}>
                         {!noHeader &&
                             <Header />
